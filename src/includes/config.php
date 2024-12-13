@@ -2,7 +2,7 @@
 $serverName = "localhost";
 $userName = "root";
 $password = "";
-$dbName = "register";
+$dbName = "football_management";
 
 $conn = mysqli_connect($serverName, $userName, $password, $dbName) or die("Could not connect to Databse");
 

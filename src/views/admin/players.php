@@ -76,7 +76,7 @@
                 </table>
             </div>
 
-            <button type="button" class="btn btn-success btn-lg mt-3" data-bs-toggle="modal" data-bs-target="#editModal">Add New User</button>
+            <button type="button" class="btn btn-dark btn-lg mt-3" data-bs-toggle="modal" data-bs-target="#editModal">Add New User</button>
         </div>
 
 

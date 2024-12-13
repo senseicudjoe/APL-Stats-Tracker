@@ -16,32 +16,33 @@
           <div class="card-body p-5 text-center">
 
             <div class="mb-md-2 mt-md-2 pb-2">
+              <form action="../functions/register.php" method="POST">
 
-              <h2 class="fw-bold mb-2 text-uppercase">Register</h2>
+                <h2 class="fw-bold mb-2 text-uppercase">Register</h2>
 
-              <div data-mdb-input-init class="form-outline form-white mt-4 mb-4">
-                <input type="text" id="fname" class="form-control form-control-lg mb-5" placeholder="FIRST NAME" />
-              </div>
+                <div data-mdb-input-init class="form-outline form-white mt-4 mb-4">
+                  <input type="text" id="fname" name="fname" class="form-control form-control-lg mb-5" placeholder="FIRST NAME" />
+                </div>
 
-              <div data-mdb-input-init class="form-outline form-white mb-4">
-                <input type="text" id="lname" class="form-control form-control-lg mb-5" placeholder="LAST NAME" />
-              </div>
+                <div data-mdb-input-init class="form-outline form-white mb-4">
+                  <input type="text" id="lname" name="lname" class="form-control form-control-lg mb-5" placeholder="LAST NAME" />
+                </div>
 
-              <div data-mdb-input-init class="form-outline form-white mb-4">
-                <input type="email" id="email" class="form-control form-control-lg mb-5" placeholder="EMAIL" />
-              </div>
+                <div data-mdb-input-init class="form-outline form-white mb-4">
+                  <input type="email" id="email" name="email" class="form-control form-control-lg mb-5" placeholder="EMAIL" />
+                </div>
 
-              <div data-mdb-input-init class="form-outline form-white mb-4">
-                <input type="password" id="password" class="form-control form-control-lg mb-5" placeholder="PASSWORD" />
-                
-              </div>
+                <div data-mdb-input-init class="form-outline form-white mb-4">
+                  <input type="password" id="password" name="password" class="form-control form-control-lg mb-5" placeholder="PASSWORD" />
+                  
+                </div>
 
-              <div data-mdb-input-init class="form-outline form-white mb-4">
-                <input type="password" id="cpassword" class="form-control form-control-lg mb-5" placeholder="CONFIRM PASSWORD" />
-              </div>
+                <div data-mdb-input-init class="form-outline form-white mb-4">
+                  <input type="password" id="cpassword" name="cpassword" class="form-control form-control-lg mb-5" placeholder="CONFIRM PASSWORD" />
+                </div>
 
-              <button data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-light btn-lg px-5" type="submit">Register</button>
-
+                <button data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-light btn-lg px-5" type="submit">Register</button>
+              </form>
             </div>
 
             <div>
