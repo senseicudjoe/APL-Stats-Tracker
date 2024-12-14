@@ -1,3 +1,5 @@
+<?php include "../../functions/admin/adminSession.php" ?>
+<?php include "../../functions/admin/getDashboardData.php" ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +23,7 @@
         <div class="flex-grow-1 p-4">
             <div class="container bg-light p-3 rounded-3 shadow">
                 <div class="d-flex justify-content-between align-items-center">
-                    <h1 class="ps-2">Welcome KOULIBALLY! 😎</h1>
+                    <h1 class="ps-2">Welcome <?php echo $lastName ?>! 😎</h1>
                     <button type="button" class="btn btn-dark btn-lg">Logout</button>
                 </div> 
             </div>
@@ -32,21 +34,21 @@
                         <div class="container bg-dark rounded-3 shadow">
                             <div class="py-3">
                                 <div class="text-white mb-3 fs-4">Total Teams</div>
-                                <h1 id="active-patients-count" class="count text-white">10</h1>
+                                <h1 id="active-patients-count" class="count text-white"><?php echo $total_teams ?></h1>
                             </div>
                         </div>
 
                         <div class="container bg-secondary rounded-3 shadow mt-5">
                             <div class="py-3">
                                 <div class="text-white mb-3 fs-4">Total Players</div>
-                                <h1 id="active-patients-count" class="count text-white">250</h1>
+                                <h1 id="active-patients-count" class="count text-white"><?php echo $total_players ?></h1>
                             </div>
                         </div>
 
                         <div class="container bg-dark rounded-3 shadow mt-5">
                             <div class="py-3">
                                 <div class="text-white mb-3 fs-4">Matches</div>
-                                <h1 id="active-patients-count" class="count text-white">45</h1>
+                                <h1 id="active-patients-count" class="count text-white"><?php echo $total_matches ?></h1>
                             </div>
                         </div>
                     </div>

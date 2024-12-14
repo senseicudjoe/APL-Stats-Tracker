@@ -47,7 +47,7 @@ if($_SERVER["REQUEST_METHOD"] == 'POST'){
       if (password_verify($password,$user_password)){
           $_SESSION['id'] = $user_id;
           $_SESSION['role'] = $user_role;
-          $_SESSION['username'] = $username;
+          $_SESSION['name'] = $lastname;
           if ($user_role == 'admin'){
               header("Location: ../views/admin/dashboard.php");
           }elseif($user_role == 'user'){
