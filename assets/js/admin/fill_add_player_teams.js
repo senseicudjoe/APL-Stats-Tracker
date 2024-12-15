@@ -7,12 +7,10 @@ $(document).ready(function() {
         dataType: 'json',
         success: function(data) {
             // Populate the select tag
-            const select_home = $('#home-options');
-            const select_away = $('#away-options');
+            const select = $('#ateam-options');
             data.forEach(function(team) {
                 const option = `<option value="${team.team_id}">${team.team_name}</option>`;
-                select_home.append(option);
-                select_away.append(option);
+                select.append(option);
             });
         },
         error: function(xhr, status, error) {

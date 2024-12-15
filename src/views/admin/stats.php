@@ -29,15 +29,12 @@
                     <div class="row mt-4">
                         <div class="col">
                             <label for="seasonYear" class="form-label"><b>Season Year*</b></label>
-                            <input type="number" id="seasonYear" min="0" class="form-control"  name="seasonYear" >
+                            <input type="number" id="seasonYear" min="2024" class="form-control"  name="seasonYear" >
                         </div>
                         <div class="col">
                             <label for="home-options" class="form-label"><b>Home Team*</b></label>
                             <select id="home-options" name="home-options" class="form-select">
                                 <option value="">Select Home Team</option>
-                                <option value="Highlanders">Highlanders</option>
-                                <option value="Red Army">Red Army</option>
-                                <option value="Kasanoma">Kasanoma</option>
                             </select>
                         </div>
                     </div>
@@ -47,9 +44,6 @@
                             <label for="away-options" class="form-label"><b>Away Team*</b></label>
                             <select id="away-options" name="away-options" class="form-select">
                                 <option value="">Select Away Team</option>
-                                <option value="Highlanders">Highlanders</option>
-                                <option value="Red Army">Red Army</option>
-                                <option value="Kasanoma">Kasanoma</option>
                             </select>
                         </div>
                         <div class="col">
@@ -72,9 +66,6 @@
                             <label for="player" class="form-label"><b>Player Name*</b></label>
                             <select id="player" name="player" class="form-select">
                                 <option value="">Select Goal Scorer</option>
-                                <option value="Kevin Cudjoe">Kevin Cudjoe</option>
-                                <option value="Nadine Ayah">Nadine Ayah</option>
-                                <option value="Papa Nhyira">Papa Nhyira</option>
                             </select>
                         </div>
                         <div class="col">
@@ -93,7 +84,7 @@
                         <div id = "goalScorers">
                         </div>
                     </div>
-
+                    <button type="button" class="btn btn-dark btn-lg d-block mx-auto mt-4" id="submitMatch">Add Match</button>
                     
                 </form>
 
@@ -105,45 +96,9 @@
 
         
     </div>
-
-
-    <script>
-        $(document).ready(function () {
-            // Handle the Add Goal Scorer button click
-            $('#addGoalScorer').on('click', function () {
-                // Get the player's name and the number of goals
-                const playerName = $('#player').val();
-                const goals = $('#goals').val();
-
-                // Validate input
-                if (!playerName || goals === '' || goals < 0) {
-                    alert('Please enter a valid player name and number of goals.');
-                    return;
-                }
-
-                // Create the new scorer element
-                const scorerHtml = `
-                    <div class="container rounded-3 color d-flex justify-content-between align-items-center" style="background-color: rgb(219, 216, 216);">
-                        <p class="p-4 mb-0">${playerName} - ${goals} goals</p>
-                        <button type="button" class="btn btn-danger btn-lg">Remove</button>
-                    </div>
-                `;
-
-                // Append the scorer to the #goalScorers div
-                $('#goalScorers').append(scorerHtml);
-
-                // Clear the input fields
-                $('#player').val('');
-                $('#goals').val('');
-            });
-
-            // Handle the Remove button click (event delegation)
-            $('#goalScorers').on('click', '.btn-danger', function () {
-                $(this).closest('.container').remove(); // Remove the scorer element
-            });
-        });
-
-    </script>
+    <script src="../../../assets/js/admin/stats.js"></script>
+    <script src="../../../assets/js/admin/fill_teams.js"></script>
+    <script src="../../../assets/js/admin/fill_players.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

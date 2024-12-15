@@ -8,6 +8,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="../../../assets/css/nav.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
     <div class="d-flex">
@@ -27,7 +28,7 @@
                 <table class="table fs-5">
                     <thead class="table-secondary">
                         <tr>
-                            <th scope="col">#</th>
+                            <!-- <th scope="col">#</th> -->
                             <th scope="col">Player Name</th>
                             <th scope="col">Team</th>
                             <th scope="col">Goals</th>
@@ -35,8 +36,8 @@
                             <th scope="col" class="text-center">Actions</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
+                    <tbody id="tableBody">
+                        <!-- <tr>
                         <th scope="row">1</th>
                         <td>Kevin Cudjoe</td>
                         <td>HIghlanders</td>
@@ -45,7 +46,6 @@
                         <td class = "text-center">
                             <button type="button" class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#editModal"><span class="action-icon">✏️</span> Edit</button>
                             <button type="button" class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal"><span class="action-icon">🗑️</span> Remove</button>
-                            <button type="button" class="btn btn-dark btn-lg"><span class="action-icon">📂</span> Open</button>
                         </td>
                         </tr>
                         <tr>
@@ -57,7 +57,7 @@
                         <td class = "text-center">
                             <button type="button" class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#editModal"><span class="action-icon">✏️</span> Edit</button>
                             <button type="button" class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal"><span class="action-icon">🗑️</span> Remove</button>
-                            <button type="button" class="btn btn-dark btn-lg"><span class="action-icon">📂</span> Open</button>
+                            
                         </td>
                         </tr>
                         <tr>
@@ -69,14 +69,12 @@
                         <td class = "text-center">
                             <button type="button" class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#editModal"><span class="action-icon">✏️</span> Edit</button>
                             <button type="button" class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal"><span class="action-icon">🗑️</span> Remove</button>
-                            <button type="button" class="btn btn-dark btn-lg"><span class="action-icon">📂</span> Open</button>
                         </td>
-                        </tr>
+                        </tr> -->
                     </tbody>
                 </table>
             </div>
-
-            <button type="button" class="btn btn-dark btn-lg mt-3" data-bs-toggle="modal" data-bs-target="#editModal">Add New User</button>
+            <button type="button" id="addbtn" class="btn btn-dark btn-lg mt-3">Add New Player</button>
         </div>
 
 
@@ -129,14 +127,10 @@
                                     <input type="date" id="DoB" class="form-control"  name="DoB" >
                                 </div>
                                 <div class="col">
-                                    <label for="country" class="form-label"><b>Nationality</b></label>
-                                    <select id="country-options" name="country-options" class="form-select">
-                                        <option value="">Select Nationality</option>
-                                        <option value="Ghana">Ghana</option>
-                                        <option value="Togo">Togo</option>
-                                        <option value="Nigeria">Nigeria</option>
-                                        <option value="South Africa">South Africa</option>
-                                        <option value="United Kingdom">United Kingdom</option>
+                                    <label for="team-options" class="form-label"><b>Position*</b></label>
+                                    <select id="team-options" name="positions" class="form-select">
+                                        <option value="">Select Team</option>
+                                        <option value="Legends">Legends</option>
                                     </select>
                                 </div>
                             </div>
@@ -144,16 +138,16 @@
                             <div class="row mt-4">
                                 <div class="col">
                                     <label for="position" class="form-label"><b>Matches Played*</b></label>
-                                    <input type="number" id="noMatches" min="0" class="form-control"  name="noMatches" >
+                                    <input type="number" id="noMatches" min="0" class="form-control"  name="noMatches" disabled>
                                 </div>
                                 <div class="col">
                                     <label for="goals" class="form-label"><b>Goals*</b></label>
-                                    <input type="number" id="goals" min="0" class="form-control"  name="goals" >
+                                    <input type="number" id="goals" min="0" class="form-control"  name="goals" disabled>
                                 </div>
 
                                 <div class="col">
                                     <label for="assists" class="form-label"><b>Assists*</b></label>
-                                    <input type="number" id="assists" min="0" class="form-control"  name="assists" >
+                                    <input type="number" id="assists" min="0" class="form-control"  name="assists" disabled>
                                 </div>
                             </div>
                         </form>
@@ -166,6 +160,65 @@
             </div>
     </div>
 
+<!-- Add Modal -->
+    <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="exampleModalLabel">Add Players</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" id="myForm" action="#">
+                        <div class="row mt-4">
+                            <div class="col">
+                                <label for="fname" class="form-label"><b>First Name*</b></label>
+                                <input type="text" id="afname" class="form-control" placeholder="Enter player first name" name="fname" >
+                            </div>
+                            <div class="col">
+                                <label for="lname" class="form-label"><b>Last Name*</b></label>
+                                <input type="text" id="alname" class="form-control" placeholder="Enter player last name" name="lname" >
+                            </div>
+                        </div>
+
+                        <div class="row mt-4">
+                            <div class="col">
+                                <label for="position" class="form-label"><b>Position*</b></label>
+                                <select id="aposition-options" name="positions" class="form-select">
+                                    <option value="">Select Player Position</option>
+                                    <option value="Midfielder">Midfielder</option>
+                                    <option value="Defender">Defender</option>
+                                    <option value="Forward">Forward</option>
+                                    <option value="Goalkeeper">Goalkeeper</option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <label for="jerseyNo" class="form-label"><b>Jersey Number*</b></label>
+                                <input type="number" id="ajerseyNo" min="0" class="form-control"  name="jerseyNo" >
+                            </div>
+                        </div>
+
+                        <div class="row mt-4">
+                            <div class="col">
+                                <label for="DoB" class="form-label"><b>Date of Birth*</b></label>
+                                <input type="date" id="aDoB" class="form-control"  name="DoB" >
+                            </div>
+                            <div class="col">
+                                <label for="ateam-options" class="form-label"><b>Position*</b></label>
+                                <select id="ateam-options" name="team" class="form-select">
+                                    <option value="">Select Team</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-success" id="asavebtn">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 <!-- Delete Modal -->
 
     <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
@@ -186,7 +239,28 @@
             </div>
         </div>
     </div>
+<!-- End Modal -->
 
+    <script>
+        $(document).ready(function () {
+            // Monitor the input field for changes
+            $('#confirmDeleteInput').on('input', function () {
+            const userInput = $(this).val(); // Get the current value of the input field
+            const deleteButton = $('#confirmDeleteButton'); // Reference the Delete button
+
+            // Check if the input matches "DELETE"
+            if (userInput === 'DELETE') {
+                deleteButton.prop('disabled', false); // Enable the button
+            } else {
+                deleteButton.prop('disabled', true); // Disable the button
+            }
+            });
+        });
+    </script>
+    <script src="../../../assets/js/admin/fill_add_player_teams.js"></script>
+    <script src="../../../assets/js/admin/get_players.js"></script>
+    <script src="../../../assets/js/admin/add_player.js"></script>
+    <script src="../../../assets/js/admin/delete_player.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

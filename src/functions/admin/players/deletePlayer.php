@@ -1,7 +1,7 @@
 <?php
 
 //db connection
-include "../../includes/config.php";
+include "../../../includes/config.php";
 
 header('Content-Type: application/json');
 error_reporting(E_ALL);
@@ -12,14 +12,14 @@ if($_SERVER["REQUEST_METHOD"] == 'POST'){
     //Sanittize id to make sure it is an integer
     $id = intval($_POST['id']);
     //validate form data(server side)
-    $query = 'DELETE FROM apl_users WHERE user_id = ?';
+    $query = 'DELETE FROM players WHERE player_id = ?';
     $stmt = $conn->prepare($query);
     $stmt->bind_param('i', $id);
     //execute statement
     if ($stmt -> execute()){
-        echo json_encode(['success' => true, 'message' => 'User deleted successfully.']);
+        echo json_encode(['success' => true, 'message' => 'Player deleted successfully.']);
     }else{
-        echo json_encode(['success' => false, 'message' => 'Failed to delete the User.']);
+        echo json_encode(['success' => false, 'message' => 'Failed to delete Player.']);
     }
     $stmt->close();
     $conn -> close();

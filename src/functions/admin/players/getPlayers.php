@@ -10,7 +10,18 @@ ini_set('display_errors', 1);
 //Check for form data
 if($_SERVER["REQUEST_METHOD"] == 'GET'){
     //validate form data(server side)
-    $query = "SELECT team_id, team_name FROM teams";
+    $query = "SELECT 
+    players.player_id AS id,
+    CONCAT(players.first_name, ' ', players.last_name) AS names,
+    teams.team_name AS team_names,
+    player_stats.goals,
+    player_stats.assists
+FROM 
+    players
+JOIN 
+    teams ON players.team_id = teams.team_id
+JOIN 
+    player_stats ON players.player_id = player_stats.player_id;";
 
     $stmt = $conn->prepare($query);
 
@@ -27,11 +38,11 @@ if($_SERVER["REQUEST_METHOD"] == 'GET'){
             echo json_encode($users);
        
         }else{
-            echo "<script> alert('No Teams Found. Add a new user') </script>";    
+            echo "<script> alert('No Users Found. Add a new user') </script>";    
         }   
     
     }else{
-        echo json_encode("Unable to load teams");
+        echo json_encode("Unable to load users");
     }
     $stmt -> close();
 }

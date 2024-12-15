@@ -54,5 +54,8 @@ CREATE TABLE matches (
     away_team_score INTEGER
 );
 
+ALTER TABLE teams
+ADD COLUMN total_draws INT DEFAULT 0;
+
 
 
