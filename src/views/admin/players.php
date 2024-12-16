@@ -108,11 +108,10 @@
                                     <label for="position" class="form-label"><b>Position*</b></label>
                                     <select id="position-options" name="positions" class="form-select">
                                         <option value="">Select Player Position</option>
-                                        <option value="CB">CB</option>
-                                        <option value="RB">RB</option>
-                                        <option value="ST">ST</option>
-                                        <option value="LW">LW</option>
-                                        <option value="RW">RW</option>
+                                        <option value="Forward">Forward</option>
+                                        <option value="Midfielder">Midfielder</option>
+                                        <option value="Defender">Defender</option>
+                                        <option value="Goalkeeper">Goalkeeper</option>
                                     </select>
                                 </div>
                                 <div class="col">
@@ -127,17 +126,17 @@
                                     <input type="date" id="DoB" class="form-control"  name="DoB" >
                                 </div>
                                 <div class="col">
-                                    <label for="team-options" class="form-label"><b>Position*</b></label>
+                                    <label for="team-options" class="form-label"><b>Team*</b></label>
                                     <select id="team-options" name="positions" class="form-select">
                                         <option value="">Select Team</option>
-                                        <option value="Legends">Legends</option>
+                                        <!-- <option value="Legends">Legends</option> -->
                                     </select>
                                 </div>
                             </div>
 
                             <div class="row mt-4">
                                 <div class="col">
-                                    <label for="position" class="form-label"><b>Matches Played*</b></label>
+                                    <label for="noMatches" class="form-label"><b>Matches Played*</b></label>
                                     <input type="number" id="noMatches" min="0" class="form-control"  name="noMatches" disabled>
                                 </div>
                                 <div class="col">
@@ -154,7 +153,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-success">Save changes</button>
+                        <button type="button" class="btn btn-success" id="editSaveBtn">Save changes</button>
                     </div>
                 </div>
             </div>
@@ -257,8 +256,11 @@
             });
         });
     </script>
+
     <script src="../../../assets/js/admin/fill_add_player_teams.js"></script>
+    <script src="../../../assets/js/admin/fill_edit_player_teams.js"></script>
     <script src="../../../assets/js/admin/get_players.js"></script>
+    <script src="../../../assets/js/admin/edit_player.js"></script>
     <script src="../../../assets/js/admin/add_player.js"></script>
     <script src="../../../assets/js/admin/delete_player.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
