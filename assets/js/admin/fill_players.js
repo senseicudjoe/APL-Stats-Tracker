@@ -11,7 +11,7 @@ $(document).ready(function() {
                     // Populate the select tag
                     const select = $('#player');
                     data.forEach(function(player) {
-                        const option = `<option value="${player.player_id}">${player.player_name}</option>`;
+                        const option = `<option value="${player.player_id}">${player.player_name}(${player.team_name})</option>`;
                         select.append(option);
                     });
                 },

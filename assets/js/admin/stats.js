@@ -79,6 +79,7 @@ $(document).ready(function () {
             success: function (response) {
                 alert('Match and player statistics updated successfully!');
                 console.log(response);
+                location.reload();
             },
             error: function (xhr, status, error) {
                 console.error('Error:', error);

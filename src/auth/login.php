@@ -6,7 +6,7 @@ session_start();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-if($_SERVER["REQUEST_METHOD"] == 'POST'){
+if($_SERVER["REQUEST_METHOD"] === 'POST'){
   $email = trim($_POST['email']);
   $password = trim($_POST['password']);
   echo "<script>console.log('$email')</script>";
@@ -30,7 +30,7 @@ if($_SERVER["REQUEST_METHOD"] == 'POST'){
       $lastname = $row['last_name'];
       $user_password = $row['password_hash'];
       $user_role = $row['role'];
-
+      // echo "<script>alert($lastname)</script>";
       // echo $user_id;
       // $_SESSION['id'] = $user_id;
       // $_SESSION['role'] = $user_role;
@@ -44,18 +44,25 @@ if($_SERVER["REQUEST_METHOD"] == 'POST'){
       //     header("Location: login.php");
       // }
       // exit();
-      if (password_verify($password,$user_password)){
+
+
+
+
+      if (password_verify($password, $user_password)){
           $_SESSION['id'] = $user_id;
           $_SESSION['role'] = $user_role;
           $_SESSION['name'] = $lastname;
-          if ($user_role == 'admin'){
-              header("Location: ../views/admin/dashboard.php");
-          }elseif($user_role == 'user'){
+          if ($user_role === 'admin') {
+            echo "<script>alert('Redirecting to admin dashboard');</script>";
+            header("Location: ../views/admin/dashboard.php");
+          } elseif ($user_role ==='user') {
+              echo "<script>alert('Redirecting to user dashboard');</script>";
               header("Location: ../views/users/dashboard.php");
-          }else{
+          } else {
+              echo "<script>alert('Redirecting to login page - Invalid role');</script>";
               header("Location: login.php");
           }
-            exit();
+          exit();
       }else{
         echo "<script> alert('Incorrect password') </script>";
       }

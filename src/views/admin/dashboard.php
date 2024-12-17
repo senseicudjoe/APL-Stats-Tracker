@@ -24,7 +24,7 @@
             <div class="container bg-light p-3 rounded-3 shadow">
                 <div class="d-flex justify-content-between align-items-center">
                     <h1 class="ps-2">Welcome <?php echo $lastName ?>! 😎</h1>
-                    <button type="button" class="btn btn-dark btn-lg">Logout</button>
+                    <a href="../../auth/logout.php" class="btn btn-dark btn-lg">Logout</a>
                 </div> 
             </div>
 
@@ -68,63 +68,77 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
     $(document).ready(function () {
-        const ctx = $('#myBarGraph')[0].getContext('2d');
+    // AJAX request to fetch data for the bar graph
+        $.ajax({
+            url: '../../functions/admin/getBarGraphData.php', // PHP endpoint
+            type: 'GET',
+            dataType: 'json', // Expecting a JSON response
+            success: function (data) {
+                // Parse data for Chart.js
+                const teamNames = data.map(team => team.team_name); // Extract team names
+                const teamWins = data.map(team => team.total_wins); // Extract team wins
 
-        // Create the bar graph
-        new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['Category A', 'Category B', 'Category C', 'Category D'],
-                datasets: [{
-                    label: 'Data Values',
-                    data: [25, 35, 20, 40], // Example data
-                    backgroundColor: '#000000', // Black for bars
-                    borderColor: '#000000', // Black for borders
-                    borderWidth: 1
-                }]
+                // Get the canvas context for Chart.js
+                const ctx = $('#myBarGraph')[0].getContext('2d');
+
+                // Create the bar graph
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: teamNames, // Labels for the x-axis
+                        datasets: [{
+                            label: 'Goals', // Dataset label
+                            data: teamWins, // Data for the y-axis
+                            backgroundColor: '#000000', // Black bar color
+                            borderColor: '#000000', // Black border color
+                            borderWidth: 1 // Bar border width
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'top', // Legend position
+                                labels: {
+                                    color: '#000000' // Black legend text
+                                }
+                            },
+                            title: {
+                                display: true,
+                                text: 'Top Teams Goal Contributions', // Chart title
+                                color: '#000000', // Black title text
+                                font: {
+                                    size: 18 // Title font size
+                                }
+                            }
+                        },
+                        scales: {
+                            x: {
+                                ticks: {
+                                    color: '#000000' // Black x-axis labels
+                                },
+                                grid: {
+                                    color: 'rgba(0, 0, 0, 0.1)' // Light gray grid lines
+                                }
+                            },
+                            y: {
+                                ticks: {
+                                    color: '#000000' // Black y-axis labels
+                                },
+                                grid: {
+                                    color: 'rgba(0, 0, 0, 0.1)' // Light gray grid lines
+                                }
+                            }
+                        }
+                    }
+                });
             },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        position: 'top',
-                        labels: {
-                            color: '#000000' // Black for legend text
-                        }
-                    },
-                    title: {
-                        display: true,
-                        text: 'All-Black Bar Graph',
-                        color: '#000000', // Black for title
-                        font: {
-                            size: 18
-                        }
-                    }
-                },
-                scales: {
-                    x: {
-                        ticks: {
-                            color: '#000000' // Black for x-axis labels
-                        },
-                        grid: {
-                            color: 'rgba(0, 0, 0, 0.1)' // Subtle light gray for grid lines
-                        }
-                    },
-                    y: {
-                        ticks: {
-                            color: '#000000' // Black for y-axis labels
-                        },
-                        grid: {
-                            color: 'rgba(0, 0, 0, 0.1)' // Subtle light gray for grid lines
-                        }
-                    }
-                }
+            error: function (xhr, status, error) {
+                // Log any errors to the console
+                console.error('Error fetching data:', error);
             }
         });
     });
-
-
-
 
 
     </script>

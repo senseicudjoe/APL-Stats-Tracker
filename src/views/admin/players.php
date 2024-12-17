@@ -1,3 +1,4 @@
+<?php include "../../functions/admin/adminSession.php" ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,59 +21,27 @@
             <div class="container bg-light p-3 rounded-3 shadow">
                 <div class="d-flex justify-content-between align-items-center">
                     <h1 class="ps-2">MANAGE PLAYERS</h1>
-                    <button type="button" class="btn btn-dark btn-lg">Logout</button>
+                    <a href="../../auth/logout.php" class="btn btn-dark btn-lg">Logout</a>
                 </div> 
             </div>
 
             <div class="container bg-light p-3 mt-5 rounded-3 shadow">
-                <table class="table fs-5">
-                    <thead class="table-secondary">
-                        <tr>
-                            <!-- <th scope="col">#</th> -->
-                            <th scope="col">Player Name</th>
-                            <th scope="col">Team</th>
-                            <th scope="col">Goals</th>
-                            <th scope="col">Assists</th>
-                            <th scope="col" class="text-center">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tableBody">
-                        <!-- <tr>
-                        <th scope="row">1</th>
-                        <td>Kevin Cudjoe</td>
-                        <td>HIghlanders</td>
-                        <td>5</td>
-                        <td>2</td>
-                        <td class = "text-center">
-                            <button type="button" class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#editModal"><span class="action-icon">✏️</span> Edit</button>
-                            <button type="button" class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal"><span class="action-icon">🗑️</span> Remove</button>
-                        </td>
-                        </tr>
-                        <tr>
-                        <th scope="row">2</th>
-                        <td>Papa Nhyira</td>
-                        <td>Kasanoma</td>
-                        <td>10</td>
-                        <td>3</td>
-                        <td class = "text-center">
-                            <button type="button" class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#editModal"><span class="action-icon">✏️</span> Edit</button>
-                            <button type="button" class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal"><span class="action-icon">🗑️</span> Remove</button>
-                            
-                        </td>
-                        </tr>
-                        <tr>
-                        <th scope="row">3</th>
-                        <td>Mohammed Kudus</td>
-                        <td>Red Army</td>
-                        <td>5</td>
-                        <td>7</td>
-                        <td class = "text-center">
-                            <button type="button" class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#editModal"><span class="action-icon">✏️</span> Edit</button>
-                            <button type="button" class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal"><span class="action-icon">🗑️</span> Remove</button>
-                        </td>
-                        </tr> -->
-                    </tbody>
-                </table>
+                <div class="table-responsive">
+                    <table class="table fs-5">
+                        <thead class="table-secondary">
+                            <tr>
+                                <th scope="col">Player Name</th>
+                                <th scope="col">Team</th>
+                                <th scope="col">Goals</th>
+                                <th scope="col">Assists</th>
+                                <th scope="col" class="text-center">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody">
+                            <!-- Dynamic rows go here -->
+                        </tbody>
+                    </table>
+                </div>
             </div>
             <button type="button" id="addbtn" class="btn btn-dark btn-lg mt-3">Add New Player</button>
         </div>

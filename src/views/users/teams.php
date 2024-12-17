@@ -1,3 +1,4 @@
+<?php include "../../functions/user/userSession.php" ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +21,7 @@
             <div class="container bg-light p-3 rounded-3 shadow">
                 <div class="d-flex justify-content-between align-items-center">
                     <h1 class="ps-2">MANAGE TEAMS</h1>
-                    <button type="button" class="btn btn-dark btn-lg">Logout</button>
+                    <a href="../../auth/logout.php" class="btn btn-dark btn-lg">Logout</a>
                 </div> 
             </div>
 

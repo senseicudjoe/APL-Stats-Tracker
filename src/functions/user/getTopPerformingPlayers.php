@@ -1,31 +1,33 @@
 <?php
 
 //db connection
-include "../../../includes/config.php";
+include "../../includes/config.php";
 
 header('Content-Type: application/json');
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-$team1_id = $_GET['id1'];
-$team2_id = $_GET['id2'];
-
 //Check for form data
 if($_SERVER["REQUEST_METHOD"] == 'GET'){
+    //validate form data(server side)
     $query = "SELECT 
-    p.player_id,
-    t.team_name, 
-    CONCAT(p.first_name,' ',p.last_name) AS player_name
+    p.player_id, 
+    CONCAT(p.first_name,' ',p.last_name) as name, 
+    ps.goals, 
+    ps.assists
 FROM 
     players p
-JOIN 
-    teams t ON p.team_id = t.team_id
-WHERE 
-    p.team_id IN (?, ?)";
-    //clean your data before passing it to database. Prevents SQL injection
+INNER JOIN 
+    player_stats ps
+ON 
+    p.player_id = ps.player_id
+ORDER BY 
+    ps.goals DESC, 
+    ps.assists DESC
+LIMIT 3;";
+
     $stmt = $conn->prepare($query);
-    //bind parameters to sql statement
-    $stmt->bind_param('ii',$team1_id,$team2_id);
+
     //execute statement
     if ($stmt -> execute()){
         $results = $stmt -> get_result();
@@ -39,11 +41,11 @@ WHERE
             echo json_encode($players);
        
         }else{
-            echo "<script> alert('No Users Found. Add a new user') </script>";    
+            echo "<script> alert('No Teams Found. Add a new user') </script>";    
         }   
     
     }else{
-        echo json_encode("Unable to load users");
+        echo json_encode("Unable to load teams");
     }
     $stmt -> close();
 }
